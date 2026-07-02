@@ -1,0 +1,15 @@
+{
+  "name": "vuln-shop-api",
+  "version": "1.0.0",
+  "description": "Deliberately vulnerable Express API for the AppSec & DevSecOps course (Lesson 1). DO NOT deploy.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "4.19.2",
+    "sqlite3": "5.1.7",
+    "jsonwebtoken": "9.0.2"
+  },
+  "license": "MIT"
+}
