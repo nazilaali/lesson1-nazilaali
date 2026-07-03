@@ -1,3 +1,8 @@
+# jwt-algorithm-none
+# Catches jwt.sign() calls where algorithm is set to "none", which disables
+# signature verification entirely and allows anyone to forge valid-looking tokens.
+# Verified: fires on algorithm:"none", stays silent on algorithm:"HS256". 
+
 rules:
   - id: jwt-algorithm-none
     languages: [javascript]
