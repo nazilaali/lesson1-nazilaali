@@ -1,0 +1,9 @@
+rules:
+  - id: jwt-algorithm-none
+    languages: [javascript]
+    severity: ERROR
+    message: >
+      JWT is signed with algorithm "none", which means the signature is
+      never verified. Anyone can forge a valid-looking token by simply
+      omitting the signature. Use a strong algorithm like HS256 or RS256.
+    pattern: 'jwt.sign(..., { ..., algorithm: "none", ... })'
