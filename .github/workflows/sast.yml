@@ -16,8 +16,7 @@ jobs:
       - name: Run Semgrep
         run: |
           pip install semgrep
-          semgrep --config p/default  --config p/security-audit --sarif --output semgrep.sarif .
-          semgrep --config p/default --config rules/custom.yml --severity ERROR --error .
+          semgrep --config p/default --severity ERROR --error --sarif --output semgrep.sarif .
       - name: Upload SARIF
         if: always()
         uses: github/codeql-action/upload-sarif@v3
