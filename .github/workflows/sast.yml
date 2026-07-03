@@ -7,7 +7,7 @@ permissions:
   contents: read
   security-events: write
   actions: read
-
+ 
 jobs:
   semgrep:
     runs-on: ubuntu-latest
@@ -16,10 +16,18 @@ jobs:
       - name: Run Semgrep
         run: |
           pip install semgrep
-          semgrep --config p/default  --config p/security-audit --config rules/custom.yml --sarif --output semgrep.sarif .
+          semgrep --config p/default  --config p/security-audit --sarif --output semgrep.sarif .
           semgrep --config p/default  --severity ERROR --error .
       - name: Upload SARIF
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: semgrep.sarif
+      - name: Run Semgrep
+        run: |
+          pip install semgrep
+          semgrep --config p/default --config p/security-audit --sarif --output semgrep.sarif .
+          echo "--- Custom rule test ---"
+          semgrep --config rules/custom.yml src/server.js --verbose
+          echo "--- Full gate ---"
+          semgrep --config p/default --config rules/custom.yml --severity ERROR --error .
